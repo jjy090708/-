@@ -1,0 +1,26 @@
+korea:
+  - https://www.yonhapnewstv.co.kr/browse/feed/
+  - https://www.hankyung.com/feed/all-news
+  - https://rss.donga.com/total.xml
+  - https://biz.chosun.com/rss/rss.xml          # 조선비즈
+  - https://www.mk.co.kr/rss/all/              # 매일경제
+  - http://rss.hani.co.kr/rss/lead/            # 한겨레
+  - http://rss.khan.co.kr/rss/www_section.rss  # 경향신문
+
+us:
+  - https://feeds.a.dj.com/rss/RSSMarketsMain.xml     # WSJ Markets
+  - http://feeds.reuters.com/reuters/businessNews     # Reuters Business
+  - https://www.cnbc.com/id/100003114/device/rss/rss.html  # CNBC Top News
+  - http://rss.cnn.com/rss/edition_world.rss          # CNN World
+  - https://feeds.bloomberg.com/news/world            # Bloomberg World
+  - https://rss.nytimes.com/services/xml/rss/nyt/World.xml # New York Times World
+
+
+commodities:
+  - https://www.oilprice.com/rss/main                 # OilPrice.com
+  - https://www.reutersagency.com/feed/?best-topics=commodities&post_type=best
+
+global:
+  - http://feeds.reuters.com/reuters/worldNews        # Reuters World
+  - https://www.ft.com/?format=rss                    # Financial Times
+  - https://www.economist.com/the-world-this-week/rss.xml  # Economist (Weekly World)
