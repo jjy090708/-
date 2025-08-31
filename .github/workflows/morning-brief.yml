@@ -4,12 +4,15 @@ on:
   schedule:
     # GitHub Actions는 UTC 기준 → 22:30 UTC = 한국 07:30
     - cron: "30 22 * * *"
-  workflow_dispatch: {}   # 수동 실행도 가능하게
+  workflow_dispatch: {}   # 수동 실행 버튼 활성화
+
+concurrency:
+  group: morning-brief
+  cancel-in-progress: true
 
 jobs:
   run-brief:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,34 +27,31 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Build token.json from secrets
+      # (선택) token.json 생성 단계는 send_brief_ci.py에 필요 없습니다. 사용 안 하려면 이 step을 삭제하세요.
+      # - name: Build token.json from secrets
+      #   env:
+      #     KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
+      #     KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
+      #     KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
+      #   run: |
+      #     python - << 'PY'
+      #     import os, json, requests
+      #     REST=os.environ["KAKAO_REST_API_KEY"]; REFRESH=os.environ["KAKAO_REFRESH_TOKEN"]; SECRET=os.environ.get("KAKAO_CLIENT_SECRET","")
+      #     data={"grant_type":"refresh_token","client_id":REST,"refresh_token":REFRESH}
+      #     if SECRET: data["client_secret"]=SECRET
+      #     import requests; r=requests.post("https://kauth.kakao.com/oauth/token", data=data, timeout=15); r.raise_for_status()
+      #     resp=r.json(); tok={"access_token": resp.get("access_token"), "refresh_token": resp.get("refresh_token", REFRESH)}
+      #     open("token.json","w",encoding="utf-8").write(json.dumps(tok, ensure_ascii=False, indent=2))
+      #     PY
+
+      - name: Run morning brief
         env:
           KAKAO_REST_API_KEY: ${{ secrets.KAKAO_REST_API_KEY }}
           KAKAO_CLIENT_SECRET: ${{ secrets.KAKAO_CLIENT_SECRET }}
           KAKAO_REFRESH_TOKEN: ${{ secrets.KAKAO_REFRESH_TOKEN }}
-        run: |
-          python - << 'PY'
-          import os, json, requests
-          REST = os.environ["KAKAO_REST_API_KEY"]
-          SECRET = os.environ.get("KAKAO_CLIENT_SECRET","")
-          REFRESH = os.environ["KAKAO_REFRESH_TOKEN"]
-          data = {
-            "grant_type":"refresh_token",
-            "client_id": REST,
-            "refresh_token": REFRESH
-          }
-          if SECRET:
-            data["client_secret"] = SECRET
-          r = requests.post("https://kauth.kakao.com/oauth/token", data=data, timeout=15)
-          r.raise_for_status()
-          resp = r.json()
-          access = resp.get("access_token")
-          new_refresh = resp.get("refresh_token", REFRESH)
-          tok = {"access_token": access, "refresh_token": new_refresh}
-          with open("token.json","w",encoding="utf-8") as f:
-            json.dump(tok, f, ensure_ascii=False, indent=2)
-          PY
-
-    - name: Run morning brief
-  run: python send_brief_ci.py
-
+          AUTO_TRANSLATE: ${{ secrets.AUTO_TRANSLATE || 'false' }}
+          TRANSLATOR: ${{ secrets.TRANSLATOR || 'none' }}
+          TARGET_LANG: ${{ secrets.TARGET_LANG || 'ko' }}
+          TRANSLATE_URL: ${{ secrets.TRANSLATE_URL || '' }}
+          BILINGUAL: ${{ secrets.BILINGUAL || 'true' }}
+        run: python send_brief_ci.py
