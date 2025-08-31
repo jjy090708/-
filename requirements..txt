@@ -1,0 +1,8 @@
+Flask==3.0.3
+requests==2.32.3
+python-dotenv==1.0.1
+feedparser==6.0.11
+pytz==2024.1
+PyYAML==6.0.2
+# for optional language detection in translation mode
+langdetect==1.0.9
