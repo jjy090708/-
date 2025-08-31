@@ -52,5 +52,6 @@ jobs:
             json.dump(tok, f, ensure_ascii=False, indent=2)
           PY
 
-      - name: Run morning brief
-        run: python send_brief.py
+    - name: Run morning brief
+  run: python send_brief_ci.py
+
