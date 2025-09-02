@@ -27,28 +27,28 @@ BILINGUAL      = os.getenv("BILINGUAL", "true").lower() == "true"
 
 # 키워드/워드리스트
 KEYWORDS = {
-    "연준":10, "fed":10, "federal reserve":10, "fomc":10,
-    "금리":9, "interest rate":9, "rate hike":9, "rate cut":9,
-    "cpi":10, "inflation":10, "deflation":8, "pce":10,
-    "gdp":8, "growth":7, "고용":7, "실업":7,
-    "환율":9, "exchange rate":9, "달러":6, "dollar":6,
-    "국채":7, "treasury":8, "bond":7, "bond yield":9, "국채금리":9,
-    "양적긴축":8, "양적완화":8, "qe":7, "qt":7,
-    "재정":7, "부양책":7, "stimulus":7, "감세":6, "tax cut":6,
-    "관세":7, "tariff":7, "무역수지":8, "trade balance":8, "수출":7, "export":7,
-    "제재":10, "sanction":10, "export control":10,
-    "칩스법":10, "chips act":10, "ira":10, "보조금":7, "subsidy":7,
-    "공급망":9, "supply chain":9, "리쇼어링":8, "reshoring":8, "리슈어링":8, "우회수출":8,
-    "유가":9, "oil":9, "opec":9, "opec+":9,
-    "천연가스":8, "natural gas":8, "gas":7,
-    "wti":7, "brent":7, "브렌트":7, "구리":7, "copper":7,
-    "반도체":8, "semiconductor":8, "ai":5,
-    "실적":8, "earnings":8, "guidance":7,
-    "감자":9, "증자":9, "ipo":7,
-    "상장폐지":10, "delisting":10, "파산":9, "bankruptcy":9, "default":9,
-    "리콜":7, "recall":7,
-    "독점금지":7, "antitrust":7, "규제":7, "regulation":7,
-    "공정위":7, "ftc":7, "doj":7
+    "연준":10, "fed":5, "federal reserve":5, "fomc":5,
+    "금리":9, "interest rate":4, "rate hike":4, "rate cut":4,
+    "cpi":5, "inflation":5, "deflation":4, "pce":5,
+    "gdp":4, "growth":3, "고용":7, "실업":7,
+    "환율":9, "exchange rate":5, "달러":6, "dollar":3,
+    "국채":7, "treasury":4, "bond":3, "bond yield":4, "국채금리":9,
+    "양적긴축":8, "양적완화":8, "qe":4, "qt":4,
+    "재정":7, "부양책":7, "stimulus":3, "감세":6, "tax cut":3,
+    "관세":7, "tariff":3, "무역수지":8, "trade balance":4, "수출":7, "export":3,
+    "제재":10, "sanction":5, "export control":5,
+    "칩스법":10, "chips act":5, "ira":5, "보조금":7, "subsidy":3,
+    "공급망":9, "supply chain":4, "리쇼어링":8, "reshoring":4, "리슈어링":8, "우회수출":8,
+    "유가":9, "oil":5, "opec":5, "opec+":5,
+    "천연가스":8, "natural gas":4, "gas":4,
+    "wti":3, "brent":3, "브렌트":7, "구리":7, "copper":4,
+    "반도체":8, "semiconductor":4, "ai":4,
+    "실적":8, "earnings":4, "guidance":4,
+    "감자":9, "증자":9, "ipo":3,
+    "상장폐지":10, "delisting":5, "파산":9, "bankruptcy":4, "default":4,
+    "리콜":7, "recall":3,
+    "독점금지":7, "antitrust":3, "규제":7, "regulation":3,
+    "공정위":7, "ftc":3, "doj":3
 }
 WAR_TERMS = {
     "전쟁","교전","공습","침공","미사일","핵","핵실험","핵개발","동원령","휴전",
@@ -293,7 +293,7 @@ def build_brief():
             "link": link
         })
 
-    header = f"[아침 브리핑] {date_str}\n기간: {since.strftime('%m/%d %H:%M')}~{now.strftime('%m/%d %H:%M')} (KST)\n상위 {N_TOP}건을 순서대로 보냅니다."
+    header = f"[아침 브리핑] {date_str}\n기간: {since.strftime('%m/%d %H:%M')}~{now.strftime('%m/%d %H:%M')} (KST)\n상위 {N_TOP}건의 뉴스."
     return header, items
 
 def main():
