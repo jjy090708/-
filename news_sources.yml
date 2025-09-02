@@ -1,4 +1,7 @@
 korea:
+  - https://www.yna.co.kr/rss/all.xml            # 연합뉴스 메인
+  - https://news.sbs.co.kr/news/SectionRssFeed.do?sectionId=01  # SBS
+  - https://imnews.imbc.com/rss/news/news_00.xml # MBC 종합
   - https://www.yonhapnewstv.co.kr/browse/feed/
   - https://www.hankyung.com/feed/all-news
   - https://rss.donga.com/total.xml
@@ -24,3 +27,4 @@ global:
   - http://feeds.reuters.com/reuters/worldNews        # Reuters World
   - https://www.ft.com/?format=rss                    # Financial Times
   - https://www.economist.com/the-world-this-week/rss.xml  # Economist (Weekly World)
+
